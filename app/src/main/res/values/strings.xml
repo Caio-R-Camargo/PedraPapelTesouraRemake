@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Pedra Papel Tesoura Remake</string>
+    <string name="escolhaDoApp">Escolha do APP:</string>
+    <string name="escolhaAbaixoSuaJogada">Escolha Abaixo Sua Jogada</string>
+    <string name="pontuacao">Pontuação:</string>
+    <string name="nivel">Nivel:</string>
+    <string name="pontuacao_Bot">Pontuação:</string>
+    <string name="voce">Você</string>
+    <string name="oponente">Oponente</string>
+    <string name="conquista">Conquistas</string>
+    <string name="conquistas">Suas conquistas</string>
+    <string name="iniciante">Iniciante</string>
+    <string name="avançado">Avançado</string>
+    <string name="profissional">Profissional</string>
+    <string name="mestre">Mestre</string>
+    <string name="desbloqueie_todos">Destrave Todos</string>
+</resources>
