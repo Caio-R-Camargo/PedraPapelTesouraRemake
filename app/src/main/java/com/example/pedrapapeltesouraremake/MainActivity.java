@@ -8,14 +8,16 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
@@ -106,7 +108,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
     }
 
     public void progressNumeros(){
@@ -187,9 +188,15 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    public void pedraJogada   (View view) { this.opcaoSelecionada ("Pedra");  }
-    public void papelJogada   (View view) { this.opcaoSelecionada ("Papel");  }
-    public void tesouraJogada (View view) { this.opcaoSelecionada ("Tesoura"); }
+    public void pedraJogada   (View view) {
+        this.opcaoSelecionada ("Pedra");
+    }
+    public void papelJogada   (View view) {
+        this.opcaoSelecionada ("Papel");
+    }
+    public void tesouraJogada (View view) {
+        this.opcaoSelecionada ("Tesoura");
+    }
 
     @SuppressLint("ResourceAsColor")
     public void opcaoSelecionada (String opcaoSelecionada){
