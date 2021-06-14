@@ -10,8 +10,8 @@ android {
         applicationId "com.example.pedrapapeltesouraremake"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 11
-        versionName "9.6"
+        versionCode 12
+        versionName "10.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

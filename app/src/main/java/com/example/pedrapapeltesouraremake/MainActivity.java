@@ -8,25 +8,19 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
 
-    TextView resultadoJogada, scoreJogador, scoreBot, nivel, progressText, menu;
-    ProgressBar progressBarNivel;
-    ImageView starJogador, starOponente, iniciante, avancado, profissional, mestre, jogadaApp, platinaTela;
-    int progressoBarInt, scoreValor, scoreValorBot;
-    boolean trofeuIni, trofeuAvan, trofeuPro, trofeuMest, jaPlatinado;
+    TextView resultadoJogada, scoreJogador, scoreBot, nivel, menu;
+    ImageView starJogador, starOponente, iniciante, avancado, profissional, mestre, jogadaApp, platina;
+    int scoreValor, scoreValorBot;
+    boolean trofeuIni, trofeuAvan, trofeuPro, trofeuMest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +47,16 @@ public class MainActivity extends AppCompatActivity{
         scoreBot = findViewById(R.id.pontuacao_int_oponente);
         scoreValorBot = Integer.parseInt(String.valueOf(scoreBot.getText()));
         nivel = findViewById(R.id.nivelJogador);
-        progressBarNivel = findViewById(R.id.progressBarNivel);
-        progressText = findViewById(R.id.progressText);
         starJogador = findViewById(R.id.starJogador);
         starOponente = findViewById(R.id.starOponente);
-        platinaTela = findViewById(R.id.trofeuPlatinaTela);
+        platina = findViewById(R.id.platina);
         scoreValor = 0;
         scoreValorBot = 0;
-        progressoBarInt = 0;
 
         //Alerta para quando o usuario entrar
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Aviso");
-        dialog.setMessage("Este Software foi desenvolvido para fins de estudo, podendo haver erros e alguns componentes podem não funcionar corretamente. Agradeço desde já a compreensão");
+        dialog.setMessage("Este Software foi desenvolvido para fins de estudo, podendo haver erros e alguns componentes podem não funcionar corretamente. Agradeço desde já a compreensão.");
         dialog.setCancelable(true);
         dialog.setIcon( android.R.drawable.ic_popup_reminder);
         dialog.setPositiveButton("Ok" , new DialogInterface.OnClickListener(){
@@ -77,63 +68,32 @@ public class MainActivity extends AppCompatActivity{
         dialog.create();
         dialog.show();
 
+        Intent intent = new Intent(getApplicationContext(), Menu.class);
+
         //Ir para Conquistas
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Menu.class);
-
                 //validação de troféus
-                if(trofeuIni == true){
+                if(trofeuIni){
                     intent.putExtra("trofeuIniciante", true);
-                    //intent.putExtra("valorTrofeu", 1);
                 }
-                if(trofeuAvan == true){
+                if(trofeuAvan){
                     intent.putExtra("trofeuAvancado", true);
-                    //intent.putExtra("valorTrofeu", 2);
                 }
-                if(trofeuPro == true){
+                if(trofeuPro){
                     intent.putExtra("trofeuProfissional", true);
-                    //intent.putExtra("valorTrofeu", 3);
                 }
-                if(trofeuMest == true){
+                if(trofeuMest){
                     intent.putExtra("trofeuMestre", true);
-                    //intent.putExtra("valorTrofeu", 4);
                 }
-                if(trofeuIni == false){
+                if(!trofeuIni){
                     intent.putExtra("trofeuIniciante", false);
                 }
                 startActivity(intent);
 
             }
         });
-
-    }
-
-    public void progressNumeros(){
-        if(jaPlatinado == true){
-
-        }else{
-            if(progressoBarInt == 100){
-                progressText.setTextColor(getResources().getColor(R.color.gold));
-                progressText.setText("Nivel Máximo.");
-                platinaTela.setVisibility(View.VISIBLE);
-
-                ImageView imageIcon = new ImageView(getApplicationContext());
-                imageIcon.setImageResource(R.drawable.trofeu_platina);
-
-                Toast toastIcon = new Toast(getApplicationContext());
-                toastIcon.setView(imageIcon);
-                toastIcon.setDuration(Toast.LENGTH_SHORT);
-                toastIcon.show();
-
-                jaPlatinado = true;
-
-            }else{
-                progressText.setTextColor(getResources().getColor(R.color.teal_700));
-                progressText.setText(progressBarNivel.getProgress() + "/"+ progressBarNivel.getMax());
-            }
-        }
 
     }
 
@@ -150,7 +110,9 @@ public class MainActivity extends AppCompatActivity{
         }
         if(scoreValor == 4){
             trofeuMest = true;
+            platina.setVisibility(View.VISIBLE);
         }
+
     }
 
     public void scoreNivel(){
@@ -235,7 +197,6 @@ public class MainActivity extends AppCompatActivity{
                 scoreValorBot++;
                 scoreNivel();
                 scoreBot.setText(Integer.toString(scoreValorBot));
-                progressNumeros();
             }else{
                 scoreValor--;
                 scoreValidacaoTrofeu();
@@ -243,17 +204,6 @@ public class MainActivity extends AppCompatActivity{
                 scoreNivel();
                 scoreJogador.setText(Integer.toString(scoreValor));
                 scoreBot.setText(Integer.toString(scoreValorBot));
-                progressNumeros();
-
-                if(progressoBarInt >= 100){
-                    this.progressoBarInt = this.progressoBarInt - 0;
-                    progressNumeros();
-                }else{
-                    this.progressoBarInt = this.progressoBarInt - 25;
-                    progressBarNivel.setProgress(this.progressoBarInt);
-                    progressNumeros();
-                }
-
             }
 
         }else if
@@ -271,23 +221,14 @@ public class MainActivity extends AppCompatActivity{
             //verficação do valor para não ter numeros negativos
             if(scoreValorBot <= 0){
                 scoreBot.setText(Integer.toString(scoreValorBot));
-                progressNumeros();
             }else{
                 scoreValorBot--;
                 scoreBot.setText(Integer.toString(scoreValorBot));
-                progressNumeros();
             }
 
             scoreNivel();
             scoreJogador.setText(Integer.toString(scoreValor));
-            //Verificação para a barra não ficar com valor negativo
-            if(progressoBarInt == 100){
-                this.progressoBarInt = this.progressoBarInt - 0;
-            }else{
-                this.progressoBarInt = this.progressoBarInt + 25;
-                progressBarNivel.setProgress(this.progressoBarInt);
-                progressNumeros();
-            }
+
 
         }else{
             resultadoJogada.setText("EMPATE!");

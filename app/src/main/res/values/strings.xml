@@ -14,4 +14,5 @@
     <string name="profissional">Profissional</string>
     <string name="mestre">Mestre</string>
     <string name="desbloqueie_todos">Destrave Todos</string>
+    <string name="voltarTela">Voltar</string>
 </resources>

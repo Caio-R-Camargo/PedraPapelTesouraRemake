@@ -53,7 +53,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/escolhaDoApp"
         android:textColor="@color/teal_700"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,6 +80,7 @@
         android:padding="10dp"
         android:text="@string/escolhaAbaixoSuaJogada"
         android:textColor="@color/teal_700"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,28 +109,6 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBarNivel"
         app:layout_constraintVertical_bias="0.956" />
 
-    <ProgressBar
-        android:id="@+id/progressBarNivel"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="346dp"
-        android:layout_height="5dp"
-        android:max="100"
-        android:progress="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressText" />
-
-    <TextView
-        android:id="@+id/progressText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/gold"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/bottomMenu"
-        app:layout_constraintStart_toStartOf="@+id/bottomMenu"
-        app:layout_constraintTop_toBottomOf="@+id/bottomMenu" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -140,6 +119,13 @@
         app:layout_constraintEnd_toStartOf="@+id/jogadaApp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <ImageView
+            android:id="@+id/platina"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/trofeu_platina" />
 
         <TextView
             android:id="@+id/textView6"
@@ -244,40 +230,30 @@
         android:id="@+id/bottomMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/textview_border_menu"
         android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_right_24"
         android:padding="5dp"
         android:text="@string/conquista"
         android:textColor="@color/teal_700"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagePapel" />
 
     <ImageView
-        android:id="@+id/trofeuPlatinaTela"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/progressText"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/bottomMenu"
-        app:layout_constraintTop_toTopOf="@+id/progressText"
-        app:srcCompat="@drawable/trofeu_platina" />
-
-    <ImageView
         android:id="@+id/linkedinIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
         android:onClick="linkedinRedir"
         app:layout_constraintBottom_toTopOf="@+id/version"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBarNivel"
-        app:layout_constraintVertical_bias="0.914"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/linkedin" />
 
 
